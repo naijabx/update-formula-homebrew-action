@@ -1,5 +1,7 @@
 # Update Homebrew Formula Actions
 
+[![version](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/marketplace/actions/update-homebrew-formula)
+
 > use for github actions to update homebrew formula
 
 ## Example
@@ -17,7 +19,7 @@ jobs:
     name: Update the Homebrew formula with latest release
     runs-on: ubuntu-latest
     steps:
-      - uses: naijabcom/update-formula-homebrew@master
+      - uses: naijabcom/update-formula-homebrew@v1.0.0
         with:
           repo: example/hello
           tap: example/homebrew-hello

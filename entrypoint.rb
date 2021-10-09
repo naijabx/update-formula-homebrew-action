@@ -90,8 +90,11 @@ begin
   formula_name = formula_name.gsub("Formula/", "")
 
   formula_desc = repo[:description]
-  formula_proj = repo[:url]
+  
+  formula_proj = repo[:html_url]
+
   formula_sha = options[:sha256]
+  
   formula_release_tag = latest_release.tag_name
 
   new_content = 
@@ -113,7 +116,7 @@ end
 
   blob_sha = client.contents(options[:tap], path: options[:formula]).sha
 
-  commit_message = options[:message]|| "Update #{repo.name} to #{latest_release.tag_name}"
+  commit_message = (options[:message].nil? || options[:message].empty?) ? "Update #{repo.name} to #{latest_release.tag_name}" : options[:message]
   logger.info commit_message
   
   client.update_contents(options[:tap],
