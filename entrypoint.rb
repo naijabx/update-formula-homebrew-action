@@ -94,7 +94,9 @@ begin
   formula_proj = repo[:html_url]
 
   formula_sha = options[:sha256]
-  
+
+  formula_license = repo[:license][:spdx_id]
+
   formula_release_tag = latest_release.tag_name
 
   new_content = 
@@ -103,7 +105,7 @@ begin
   homepage \"#{formula_proj}\"
   url \"#{download_url}\"
   sha256 \"#{formula_sha}\"
-  license \"MIT\"
+  license \"#{formula_license}\"
   version \"#{formula_release_tag}\"
 
   def install
