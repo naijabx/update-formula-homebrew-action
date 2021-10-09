@@ -1,0 +1,58 @@
+name: "Update Homebrew Formula"
+description: "Update a Homebrew formula with a GitHub release."
+
+inputs:
+  repo:
+    description: |
+      The Project main repository
+      (e.g. example/project)
+    required: true
+  tap:
+    description: |
+      The Homebrew tap repository for update formula
+      (e.g. example/homebrew-hello)
+    required: true
+  formula:
+    description: |
+      The path to the formula in the tap repository
+      (e.g. Formula/hello.rb)
+    required: true
+  download-url:
+    description: |
+      The download file url of release 
+      (e.g. "https://github.com/example/hello/releases/download/1.0.0/hello.tar.gz")
+    required: true
+  sha256:
+    description: |
+      The sha 256 of release file
+      (e.g. "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    required: true
+  commit-message:
+    description: |
+      The message of the commit updating the formula.
+      "Update {repository name} to #{tag name}"
+      (e.g. "Update hello to 1.0.0")
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    [
+      --repository,
+      "${{ inputs.repo }}",
+      --tap,
+      "${{ inputs.tap }}",
+      --formula,
+      "${{ inputs.formula }}",
+      --download-url,
+      "${{ inputs.download-url }}",
+      --sha256,
+      "${{ inputs.sha256 }}",
+      --commit-message,
+      "${{ inputs.commit-message }}",
+    ]
+
+branding:
+  icon: "arrow-up"
+  color: "yellow"
