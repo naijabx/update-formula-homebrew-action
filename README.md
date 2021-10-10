@@ -47,7 +47,7 @@ jobs:
         id: shasum-mac-os
         run: |
           echo ::set-output name=sha::"$(shasum -a 256 ./bin/target/hello-${{ steps.get_version.outputs.version }}-macos-x64.tar.gz | awk '{printf $1}')"
-      - uses: naijabcom/update-formula-homebrew@v1.0.0
+      - uses: naijabx/update-formula-homebrew@v1.0.0
         with:
           repo: example/hello
           tap: example/homebrew-hello
