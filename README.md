@@ -1,6 +1,6 @@
 # Update Homebrew Formula Actions
 
-[![version](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/marketplace/actions/update-homebrew-formula)
+[![version](https://img.shields.io/badge/release-v1-blue)](https://github.com/marketplace/actions/update-homebrew-formula)
 
 > use for github actions to update homebrew formula
 
