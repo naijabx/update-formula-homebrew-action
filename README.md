@@ -1,6 +1,6 @@
 # Update Homebrew Formula Actions
 
-[![version](https://img.shields.io/badge/release-v1-blue)](https://github.com/marketplace/actions/update-homebrew-formula)
+[![version](https://img.shields.io/badge/release-v1.1-blue)](https://github.com/marketplace/actions/update-homebrew-formula)
 
 > use for github actions to update homebrew formula
 
@@ -54,7 +54,7 @@ jobs:
           formula: Formula/hello.rb
           download-url: https://github.com/example/hello/releases/download/${{ steps.get_version.outputs.version }}/hello-${{ steps.get_version.outputs.version }}-macos-x64.tar.gz
           sha256: xxxxxxxxxxxxx
-          commit-message: update hello formula 
+          commit-message: update hello formula
         env:
           COMMIT_TOKEN: ${{ secrets.COMMIT_TOKEN }}
 ```
