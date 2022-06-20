@@ -57,17 +57,6 @@ begin
   raise "missing argument: -d/--download-url" unless options[:download_url]
   raise "missing argument: -s/--sha256" unless options[:sha256]
 
-  Octokit.middleware = Faraday::RackBuilder.new do |builder|
-    builder.use Faraday::Request::Retry, exceptions: [Octokit::ServerError]
-    builder.use Faraday::Response::RaiseError
-    builder.use Octokit::Middleware::FollowRedirects
-    builder.use Octokit::Response::FeedParser
-    builder.response :logger, logger, log_level: :debug do |logger|
-      logger.filter(/(Authorization\: )(.+)/, '\1[REDACTED]')
-    end
-    builder.adapter Faraday.default_adapter
-  end
-
   client = Octokit::Client.new(access_token: ENV["COMMIT_TOKEN"])
 
   repo = client.repo(options[:repository])
