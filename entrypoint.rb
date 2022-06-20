@@ -7,6 +7,7 @@ Bundler.require
 require "base64"
 require "logger"
 require "optparse"
+require 'faraday/retry'
 
 logger = Logger.new($stdout)
 logger.level = Logger::INFO
@@ -58,8 +59,8 @@ begin
   raise "missing argument: -s/--sha256" unless options[:sha256]
 
   Octokit.middleware = Faraday::RackBuilder.new do |builder|
-    builder.use Faraday::Request::Retry, exceptions: [Octokit::ServerError]
-    builder.use Faraday::Response::RaiseError
+    builder.use Faraday::Retry, exceptions: [Octokit::ServerError]
+    builder.use Octokit::Response::RaiseError
     builder.use Octokit::Middleware::FollowRedirects
     builder.use Octokit::Response::FeedParser
     builder.response :logger, logger, log_level: :debug do |logger|
